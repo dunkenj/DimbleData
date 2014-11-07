@@ -13,7 +13,7 @@ title:               DimbleData
 tagline:             Welcome...to Question Time
 description:         ''
 url:                 http://dunkenj.github.io/DimbleData/
-baseurl:             http://dunkenj.github.io/DimbleData/
+baseurl:             http://dunkenj.github.io/DimbleData
 paginate:            5
 
 # About/contact
