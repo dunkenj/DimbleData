@@ -12,7 +12,7 @@ relative_permalinks: true
 title:               DimbleData
 tagline:             Welcome...to Question Time
 description:         ''
-url:                 dunkenj.github.io/DimbleData/
+url:                 http://dunkenj.github.io/DimbleData/
 baseurl:             /
 paginate:            5
 
@@ -20,7 +20,7 @@ paginate:            5
 author:
   name:              Ken Duncan
   url:               https://twitter.com/dunkenj
-  email:             markdotto@gmail.com
+  email:             
 
 # Custom vars
 version:             1.0.0
