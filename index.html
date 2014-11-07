@@ -1,71 +1,124 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Kenneth Duncan</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+		<link href='http://fonts.googleapis.com/css?family=Roboto:300,100,100italic,300italic|Roboto+Slab:400,100' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <style>
+            body {
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="css/main.css">
+		<script type="text/javascript">
+		
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-40295323-1']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		
+		</script>
+        <script type="text/javascript" src="MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML_b"></script>
+        
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
 
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
+        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container-fluid">
+              <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <div class="nav-collapse collapse">
+                <ul class="nav nav-pills pull-right">
+					<li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+                </ul>
+              </div><!--/.nav-collapse -->
+            </div>
+          </div>
+        </div>
+
+		<div id="wrap">
+        <div id="main" class="container clear-top">
+            <div class="row">
+                <div class="span10 offset2">
+                    <div class="row">
+                	<div class="pull-right">
+                		<h1 class="hidden-phone">DimbleData</h1>
+                		<h2 class="visible-phone">DimbleData</h2>
+
+                	</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="tabbable span7 offset3">
+					<div class="tab-content" style="margin-top:60px">
+						<div class="tab-pane fade active in" id="home">
+                			<p>Good Evening...and welcome to <a href="http://www.bbc.co.uk/programmes/b006t1q9">Question Time!</a></p>
+						</div>	
+						
+                     </div>	
+					<div>
+				</div>
+			</div>
+        </div> <!-- /container -->
+		</div>
+
+		<footer class="footer">
+			<p>&copy; Kenneth Duncan 2014</p>
+			<a href="https://twitter.com/dunkenj"><i class="icon-twitter icon-large"></i></a>
+		</footer>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap-transition.js"></script>
+    <script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+    <script>
+    $(function () {
+       var activeTab = $('[href=' + location.hash + ']');
+       activeTab && activeTab.tab('show');
+    });
+
+    $(document).ready(function () {
+      location.hash && $(location.hash + '.collapse').collapse('show');
+    });
+
+    $(document).ready(function () {
+      if (location.hash){
+        $(location.hash).collapse('show');
+        $(location.hash).parents('.accordion-body').collapse('show');
+      }
+    });
     </script>
-    <title>Dimbledata by dunkenj</title>
-  </head>
 
-  <body>
-    <a id="forkme_banner" href="https://github.com/dunkenj/UtterlyDimbleby">View on GitHub</a>
-    <div class="shell">
-
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Dimbledata</h1>
-            <h2>Question Time in far too much detail</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
-
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/dunkenj/UtterlyDimbleby/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/dunkenj/UtterlyDimbleby/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
-
-
-      <span class="banner-fix"></span>
-
-
-      <section id="main_content">
-        <h2>
-<a id="good-evening-and-welcome-to-question-time" class="anchor" href="#good-evening-and-welcome-to-question-time" aria-hidden="true"><span class="octicon octicon-link"></span></a>Good evening, and welcome to <a href="http://www.bbc.co.uk/programmes/b006t1q9">Question Time</a>!</h2>
-
-<hr>
-      </section>
-
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/dunkenj">dunkenj</a> can be found on <a href="https://github.com/dunkenj/UtterlyDimbleby">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
-      </footer>
-
-    </div>
-
-    
-  </body>
+    </body>
 </html>
