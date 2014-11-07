@@ -50,18 +50,22 @@ for i, table in enumerate(tables[-1:]):
         cols = row.findAll('td')
         if len(cols) >= 3:
             links = cols[2].findAll('a')
+            names = []
             for link in links:
-                print link.text, 
                 purl = 'http://en.wikipedia.org'+link.get('href')
-                print purl,
-                print find_party_get_party_party_on(purl)
-            
-            names = cols[2]
-            #print names
-            
-            nstring = names.getText().split(',')            
+                if '#' not in purl:
+                    #print link.text,
+                    #print purl,
+                    party = find_party_get_party_party_on(purl)
+                    #print party
+                    names.append(link.text)
+                    
+            names2 = cols[2]            
+            nstring = names2.getText().split(',')            
             for name in nstring:
-                people.append(name)
+                if name not in names:
+                    names.append(name)
+            print names
         else:
             continue
 
