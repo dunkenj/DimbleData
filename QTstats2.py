@@ -13,9 +13,13 @@ html = response.read()
 
 soup = b(html)
 
-people = []
-genders = []
-parties = []
+people_all = []
+genders_all = []
+parties_all = []
+
+people_multi = []
+genders_multi = []
+parties_multi = []
 
 tables = soup.findAll('table','wikitable')[2:] #First two tables are other content
 year_headers = soup.findAll('h2')[2:-4] # Likewise with headers
@@ -63,7 +67,12 @@ for year in year_headers:
     spans = year.findAll('span')
     years.append(int(spans[0].text))
 
-for i, table in enumerate(tables[-4:]):
+for i, table in enumerate(tables[:]):
+    genders_temp = []
+    people_temp = []
+    parties_temp = []
+    
+    
     print i
     for row in table.findAll('tr'):
         cols = row.findAll('td')
@@ -74,30 +83,53 @@ for i, table in enumerate(tables[-4:]):
                 purl = 'http://en.wikipedia.org'+link.get('href')
                 if '#' not in purl:
                     print link.text,
-                    print purl,
+                    #print purl,
                     party, gender = find_party_get_party_party_on(purl)
                     print party, gender
-                    genders.append(gender)
-                    parties.append(party)
+                    genders_all.append(gender)
+                    parties_all.append(party)
                     names.append(link.text)
-                    people.append(link.text)
+                    people_all.append(link.text)
+                    
+                    genders_temp.append(gender)
+                    parties_temp.append(party)
                     
             names2 = cols[2]            
             nstring = names2.getText().split(',')            
             for name in nstring:
                 if name not in names:
                     names.append(name)
-                    people.append(name)
+                    people_all.append(name)
+                    people_temp.append(name)
             #print names
         else:
             continue
 
+    counts = Counter(people_temp)
+    gendercount = Counter(genders_temp)
+    partycount = Counter(parties_temp)
 
-counts = Counter(people)
+    total = numpy.sum(gendercount.values())
+    for key in gendercount:
+        gendercount[key] /= float(total)
 
-gendercount = Counter(genders)
+    total = numpy.sum(partycount.values())
+    for key in partycount:
+        partycount[key] /= float(total)
+        
+    genders_multi.append(gendercount)
+    parties_multi.append(partycount)
+    people_multi.append(counts)
+    
 
-parties = numpy.array(parties)
+counts = Counter(people_all)
+
+gendercount = Counter(genders_all)
+total = numpy.sum(gendercount.values())
+for key in gendercount:
+    gendercount[key] /= total
+
+parties = numpy.array(parties_all)
 
 parties[parties == 'Scottish Conservative Party'] = 'Conservative'
 parties[parties == 'Conservative Party'] = 'Conservative'
@@ -106,7 +138,7 @@ parties[parties == 'Labour Co-operative'] = 'Labour'
 parties[parties == 'Liberal Democrat'] = 'Liberal Democrats'
 parties[parties == '[1]'] = 'Unknown'
 
-partycount = numpy.array(Counter(parties).most_common(8)[1:])
+partycount = numpy.array(Counter(parties_all).most_common(8)[1:])
 
 
 order = numpy.argsort(counts.values())
@@ -125,9 +157,6 @@ bar_width = 0.5
 """
 PLOT THAT SHIT
 """
-
-
-
 
 Fig = plt.figure(figsize=(10,6))
 Ax = Fig.add_subplot(111)
@@ -163,6 +192,27 @@ Ax3 = Fig3.add_subplot(111)
 
 Ax3.pie(gendercount.values(),labels=gendercount.keys(),autopct='%.1f%%')
 Ax3.axis('equal')
+
+
+
+Fig4 = plt.figure(figsize=(8,6))
+Ax4 = Fig4.add_subplot(111)
+
+MaleYears = [x['Male'] for x in genders_multi]
+FemaleYears = [x['Female'] for x in genders_multi]
+UnknownYears = [x['Not Found'] for x in genders_multi]
+
+Ax4.plot(numpy.arange(len(years)),MaleYears,lw=3,label='Male')
+Ax4.plot(numpy.arange(len(years)),FemaleYears,lw=3,label='Female')
+Ax4.plot(numpy.arange(len(years)),UnknownYears,lw=3,label='Not found')
+
+Ax4.set_xticks(numpy.arange(len(years))[::5])
+Ax4.set_xticklabels(years[::5])
+Ax4.set_ylim([0,1])
+#Ax4.set_xlim([-0.5,9.5])
+Ax4.legend()
+Ax4.set_xlabel('Year')
+Ax4.set_ylabel('Fraction of Guests')
 
 plt.show()
 
